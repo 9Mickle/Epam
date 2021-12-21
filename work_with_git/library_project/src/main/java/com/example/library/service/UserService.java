@@ -99,4 +99,11 @@ public class UserService {
     public List<User> getAllUser() {
         return userRepository.findAll();
     }
+
+    /**
+     * Methods for cherrypick.
+     */
+    public void secondMethod() {
+        System.out.println("I'm second, but I'm better than all the other methods, add me to develop");
+    }
 }
