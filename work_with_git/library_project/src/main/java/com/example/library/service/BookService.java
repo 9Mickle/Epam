@@ -111,9 +111,12 @@ public class BookService {
     public List<Book> deleteBookForUser(Long bookId, Long userId) {
         Book book = getBookById(bookId);
         User user = userService.getUserById(userId);
+        List<Book> userBooks = user.getBooks();
 
-        if (user.getBooks().contains(book)) {
-            user.getBooks().remove(book);
+        System.out.println("----------ewfjnergkl error");
+        if (userBooks.contains(book)) {
+            userBooks.remove(book);
+
             bookRepository.save(book);
             return bookRepository.findAllBooksForUser(userId)
                     .orElseThrow(() -> new BookNotFoundException("Book not found for User: " + userId));
