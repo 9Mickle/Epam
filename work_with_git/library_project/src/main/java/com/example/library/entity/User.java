@@ -34,4 +34,8 @@ public class User {
     @JoinTable(name = "user_book", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> books = new ArrayList<>();
+
+    public static String getFullName (String fName, String name, String LName) {
+        return fName + " " + name + " " + LName;
+    }
 }
