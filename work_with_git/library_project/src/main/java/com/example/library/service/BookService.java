@@ -113,7 +113,6 @@ public class BookService {
         User user = userService.getUserById(userId);
         List<Book> userBooks = user.getBooks();
 
-        System.out.println("----------ewfjnergkl error");
         if (userBooks.contains(book)) {
             userBooks.remove(book);
 
