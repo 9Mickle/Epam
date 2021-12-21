@@ -37,7 +37,11 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> books = new ArrayList<>();
 
+    /**
+     * merge conflict.
+     */
     public static String getFullName (String fName, String name, String LName) {
-        return fName + " " + name + " " + LName;
+        String result = fName + " " + name + " " + LName;
+        return result;
     }
 }
