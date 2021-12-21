@@ -12,7 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class BookService {
@@ -68,7 +70,7 @@ public class BookService {
     public void deleteBook(Long bookId) {
         Book book = getBookById(bookId);
         List<User> users = userService.getAllUsersForBook(bookId);
-        for (User user: users) {
+        for (User user : users) {
             user.getBooks().remove(book);
             userService.saveUser(user);
         }
@@ -131,5 +133,25 @@ public class BookService {
     public Book getBookById(Long bookId) {
         return bookRepository.findById(bookId)
                 .orElseThrow(() -> new BookNotFoundException("Book not found with id: " + bookId));
+    }
+
+    /**
+     *  BAD REALISATION for merge conflict.
+     *
+     * Method for personal recommendations of the user - which books should he read
+     * In this method, they are selected randomly, and not according to the user's preference)
+     * @return list random book.
+     */
+    public List<Book> getRandomBooks() {
+        Random random = new Random();
+        int countRandomBook = 3;
+        List<Book> result = new ArrayList<>();
+
+        List<Book> books = bookRepository.findAll();
+        for (int i = 0; i < countRandomBook; i++) {
+            int randomIndex = random.nextInt(books.size());
+            result.add(books.get(randomIndex));
+        }
+        return result;
     }
 }
