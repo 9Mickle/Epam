@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class BookService {
@@ -131,5 +131,28 @@ public class BookService {
     public Book getBookById(Long bookId) {
         return bookRepository.findById(bookId)
                 .orElseThrow(() -> new BookNotFoundException("Book not found with id: " + bookId));
+    }
+
+    /**
+     *  Normal REALISATION.
+     *
+     * Method for personal recommendations of the user - which books should he read
+     * In this method, they are selected randomly, and not according to the user's preference)
+     * @return set random book.
+     */
+    public Set<Book> getRandomBooks() {
+        Random random = new Random();
+        int countRandomBook = 3; // number of books in recommendations.
+        Set<Book> result = new HashSet<>();
+
+        if (bookRepository.findAll().size() > 3) {
+            List<Book> books = bookRepository.findAll();
+            for (int i = 0; i < countRandomBook; i++) {
+                int randomIndex = random.nextInt(books.size());
+                result.add(books.get(randomIndex));
+            }
+            return result;
+        }
+        return null;//
     }
 }
