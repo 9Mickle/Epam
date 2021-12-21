@@ -23,6 +23,8 @@ public class User {
     private String email;
     @Column(nullable = false, name = "first_name")
     private String firstName;
+    @Column(nullable = false)
+    private String name;
     @Column(nullable = false, name = "last_name")
     private String lastName;
     @Column(nullable = false)
