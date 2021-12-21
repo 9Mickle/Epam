@@ -41,7 +41,6 @@ public class User {
      * merge conflict.
      */
     public static String getFullName (String fName, String name, String LName) {
-        String result = fName + " " + name + " " + LName;
-        return result;
+        return fName + " " + name + " " + LName;
     }
 }

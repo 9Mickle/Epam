@@ -133,7 +133,7 @@ public class BookService {
                 .orElseThrow(() -> new BookNotFoundException("Book not found with id: " + bookId));
     }
 
-    /**
+    /** merge conflict.
      *  Normal REALISATION.
      *
      * Method for personal recommendations of the user - which books should he read
