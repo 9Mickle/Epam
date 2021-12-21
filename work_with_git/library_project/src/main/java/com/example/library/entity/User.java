@@ -23,6 +23,8 @@ public class User {
     private String email;
     @Column(nullable = false, name = "first_name")
     private String firstName;
+    @Column(nullable = false)
+    private String name;
     @Column(nullable = false, name = "last_name")
     private String lastName;
     @Column(nullable = false)
@@ -34,4 +36,9 @@ public class User {
     @JoinTable(name = "user_book", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> books = new ArrayList<>();
-}
+
+    public static String getFullName(String fName, String name, String lName) {
+        String result = fName + " " + name + " " + lName;
+        return result;
+    }
+ }
